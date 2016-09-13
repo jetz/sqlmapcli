@@ -266,7 +266,7 @@ class Task(object):
         else:
             raise TaskLogError("Can't get log")
 
-    def run(self, url=None, options=None, interval=5):
+    def run(self, url=None, options=None, timeout=None, interval=5):
         """ Shorthand for call `start`, `status` and `get_result`
 
         Args:
@@ -275,14 +275,19 @@ class Task(object):
             options (Optional[dict]): shorthand, set options for task,
                 alternative to `set_option` or `update_options` or set
                 options when create task.
-            interval (int): interval time toquery task status, seconds default.
+            timeout (int): running forever if None, or seconds.
+            interval (int): interval seconds to query task status.
 
         Returns:
             dict if successfully, None otherwise.
         """
         self.start(url, options)
 
+        start = time.time()
+
         while self.running:
+            if timeout and time.time() - start > timeout:
+                return None
             time.sleep(interval)
 
         try:

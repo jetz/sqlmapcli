@@ -228,7 +228,7 @@ Methods
     If start & end is None, return all logs, otherwise return logs between start and end index. 
 
 
-`Task.run(url=None, options=None, interval=5)`
+`Task.run(url=None, options=None, timeout=None, interval=5)`
 
     Returns task result dict if successfully, None otherwise.
 
@@ -236,6 +236,8 @@ Methods
 
     ``url`` and ``options`` is same as ``start`` method. 
     
+    ``timeout`` stop runnning after timeout.
+
     ``interval`` poll to check task status.
 
     Example:
