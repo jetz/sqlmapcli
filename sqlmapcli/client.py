@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 -----------------------------------------------------
@@ -10,7 +10,7 @@
 -----------------------------------------------------
 """
 
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 import requests
 
